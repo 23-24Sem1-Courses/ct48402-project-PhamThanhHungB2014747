@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'customdialog.dart';
+import '../customdialog.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key, required this.controller});

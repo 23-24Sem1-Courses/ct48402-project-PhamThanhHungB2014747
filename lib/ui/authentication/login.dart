@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import './sign_up.dart';
 // import './authentication_manager_.dart';
-import 'customdialog.dart';
+import '../customdialog.dart';
 
 PageController controller = PageController(initialPage: 0);
 
