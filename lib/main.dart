@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp>{
   final List<Widget> _tabs = [
     const MyGridView(),
     const LoadingSreen(),
-    const Icon(Icons.directions_bike),
+    Profile(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -55,55 +55,6 @@ class _MyAppState extends State<MyApp>{
           ],
         ),
       ),
-    // theme: ThemeData(
-    //   useMaterial3: true,
-    // ),
-    // home: 
-    // DefaultTabController(
-    //   length: 3,
-    //   child: Scaffold(
-    //     body: const TabBarView(
-    //       children: [
-    //         LoadingSreen(),
-    //         MyGridView(),
-    //         Icon(Icons.directions_bike),
-    //       ],
-    //     ),
-    //     bottomNavigationBar: Container( 
-    //       color: Colors.transparent,
-    //       child: const TabBar(
-    //         tabs: [
-    //           Tab(
-    //             icon: Icon(Icons.book),
-    //             // text: 'Novel',
-    //             ),
-    //           Tab(
-    //             icon: Icon(Icons.book_outlined),
-    //             // text: 'Novel library',
-    //           ),
-    //           Tab(
-    //             icon: Icon(
-    //               Icons.account_box_rounded,
-    //               // color: Colors.blue,
-    //               ),
-    //           ),
-    //         ],
-    //         labelStyle: TextStyle(
-    //           fontFamily: 'Recoleta',
-    //           fontSize: 16, 
-    //           fontWeight: FontWeight.bold, 
-    //           color: Colors.white,
-    //         ),
-    //         unselectedLabelStyle: TextStyle(
-    //           fontFamily: 'Recoleta',
-    //           fontSize: 14, 
-    //           fontWeight: FontWeight.normal, 
-    //           color: Colors.white54,
-    //         ),
-          // ),
-        // ),
-      // ),
-    // ),
   );
   }
 }
