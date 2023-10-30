@@ -1,14 +1,20 @@
+import 'package:ct484_project/ui/novels/novel_manager.dart';
 import 'package:flutter/material.dart';
 import './ui/screens.dart';
 
+
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 // PageController controller = PageController(initialPage: 0);
 
 class MyApp extends StatefulWidget  {
+  const MyApp({super.key});
+
   // @override
+  @override
+  // ignore: library_private_types_in_public_api
   _MyAppState createState() => _MyAppState();
 }
 
@@ -20,9 +26,10 @@ class _MyAppState extends State<MyApp>{
 
   // ignore: unused_field
   final List<Widget> _tabs = [
-    const MyGridView(),
-    const LoadingSreen(),
-    Profile(),
+    const ListNovel(),
+    // DetailNovelScreen(NovelsManager().items[1]),
+    LoadingSreen(),
+    const Profile(),
   ];
   @override
   Widget build(BuildContext context) {

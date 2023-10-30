@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import './page.dart';
 
 class Novel {
   final String? id;
@@ -7,28 +6,29 @@ class Novel {
   final String author;
   final String description;
   final String imageUrl;
-  final List<Page> pages = [];
-  final ValueNotifier<bool> _Inlibrary;
+  final int countChapter;
+  final ValueNotifier<bool> inlibrary;
 
   Novel({
     this.id,
     required this.name,
     required this.author,
     required this.description,
+    required this.countChapter,
     required this.imageUrl,
-    isFavorite = false,
-  }) : _Inlibrary = ValueNotifier(isFavorite);
+    inlibrary = false,
+  }) : inlibrary = ValueNotifier(inlibrary);
 
   set isFavorite(bool newValuve){
-    _Inlibrary.value = newValuve;
+    inlibrary.value = newValuve;
   }
 
-  bool get isFavorite {
-    return _Inlibrary.value;
+  bool get isInlibrary {
+    return inlibrary.value;
   }
 
   ValueNotifier<bool> get isFavoriteListenable{
-    return _Inlibrary;
+    return inlibrary;
   }
   Novel copyWith({
     String? id,
@@ -36,15 +36,16 @@ class Novel {
     String? description,
     double? price,
     String? imageUrl,
-    bool? isFavorite,
+    bool? inlibrary,
   }) {
     return Novel(
       id: id ?? this.id,
-      name: name ?? this.name,
-      author: author ?? this.author,
+      name: name,
+      author: author,
       description: description ?? this.description,
       imageUrl: imageUrl ?? this.imageUrl,
-      isFavorite: isFavorite ?? this.isFavorite,
+      countChapter: countChapter,
+      inlibrary: inlibrary ?? inlibrary, 
     );
   }
 
@@ -63,6 +64,8 @@ class Novel {
       name: json['title'],
       description: json['description'],
       author: json['author'],
+      inlibrary: json['inlibrary'], 
+      countChapter: json['countChapter'],
       imageUrl: json['imageUrl'],
     );
   }

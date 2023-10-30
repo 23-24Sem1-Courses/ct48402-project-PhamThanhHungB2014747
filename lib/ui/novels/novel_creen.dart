@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-// import '../../models/novel.dart';
+import '../../models/novel.dart';
+import './detail_novel_screen.dart';
+class NovelScreen extends StatelessWidget{
 
-class ProductScreen extends StatelessWidget{
+  const NovelScreen(this.novel, {super.key});
+
+  final Novel novel;
+
   // final Novel novel;
   // ProductScreen({required this.novel});
   @override
@@ -19,7 +24,11 @@ class ProductScreen extends StatelessWidget{
             children: [
               InkWell(
                 onTap: () {
-                  // Xử lý sự kiện khi nút được nhấn vào
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (context) => DetailNovelScreen(novel)),
+                  );
                 },
                 child: Card(
                   elevation: 5.0,
@@ -30,11 +39,11 @@ class ProductScreen extends StatelessWidget{
                     width: double.infinity,
                     height: 200.0,
                     decoration: BoxDecoration(
-                      color: Color(0xFFF8F8FF),
+                      color: const Color(0xFFF8F8FF),
                       borderRadius: BorderRadius.circular(10.0),
-                      image: const DecorationImage(
+                      image: DecorationImage(
                         image: NetworkImage(
-                          'https://english-e-reader.net/covers/Jojos_Story-Antoinette_Moses_cover.jpg',
+                          novel.imageUrl,
                         ),
                         fit: BoxFit.contain,
                         alignment: Alignment.topLeft,
@@ -43,15 +52,15 @@ class ProductScreen extends StatelessWidget{
                   ),
                 ),
               ),
-              const Positioned(
+               Positioned(
                 top: 20,
                 right: 50,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Jojo's Story",
-                      style: TextStyle(
+                      novel.name,
+                      style: const TextStyle(
                         color: Color(0xFF393939),
                         fontSize: 20,
                         fontFamily: 'Recoleta',
@@ -59,8 +68,8 @@ class ProductScreen extends StatelessWidget{
                       ),
                     ),
                     Text(
-                      "Antoinette Moses",
-                      style: TextStyle(
+                      novel.author,
+                      style: const TextStyle(
                         color: Color(0xFF393939),
                         fontSize: 20,
                         fontFamily: 'Recoleta',
@@ -69,8 +78,8 @@ class ProductScreen extends StatelessWidget{
                     SizedBox(
                       width: 170,
                       child: Text(
-                        "Button came into the world in far 1860, it was the last day of the War. He looked like an old, little man. His father was upset and wanted to kill him, but then he exposed him to the hospitage. People around thought that this man was born for suffering, but he had become one of the happiest people in the world. The nature’s anomaly had born him and given the great opportunity – Conversely live. He wasn't getting older like everybody, he was becoming younger the whole his life. He had a hard way, full of sense, friendship, and good people. And the most important – by love. Our hero got acquainted with the world around through communication with old people that’s why he avoided mistakes, which usual people always make.",
-                        style: TextStyle(
+                        novel.description,
+                        style: const TextStyle(
                           color: Color(0xFF393939),
                           fontSize: 14,
                           fontFamily: 'Recoleta',
