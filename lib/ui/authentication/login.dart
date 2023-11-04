@@ -7,8 +7,9 @@ import '../customdialog.dart';
 PageController controller = PageController(initialPage: 0);
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key, required this.controller});
-  final PageController controller;
+  // const LoginScreen({super.key, required this.controller});
+  const LoginScreen({super.key});
+  // final PageController controller;
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -48,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 TextField(
                   controller: _emailController,
-                  textAlign: TextAlign.center, 
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Color(0xFF393939),
                     fontSize: 13,
@@ -132,15 +133,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () {
-                        if(checkLogin(_emailController.text,_passController.text) == true){
+                        if (checkLogin(
+                                _emailController.text, _passController.text) ==
+                            true) {
                           // _authenticationManager.login(_emailController.text,_passController.text);
                           print('yes');
-                        }
-                        else{
+                        } else {
                           CustomDialog.show(
-                            context, 
-                            checkLogin(_emailController.text,_passController.text), 
-                            Color(0xFFFF0000));
+                              context,
+                              checkLogin(
+                                  _emailController.text, _passController.text),
+                              Color(0xFFFF0000));
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -178,8 +181,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     InkWell(
                       onTap: () {
                         Navigator.push(
-                          context, 
-                          MaterialPageRoute(builder: (context) => SignUpScreen(controller: controller)),
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  SignUpScreen(controller: controller)),
                         );
                       },
                       child: const Text(
@@ -213,16 +218,17 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-  checkLogin(String email,String pass){
+
+  checkLogin(String email, String pass) {
     final emailRegex = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
     // final uppercaseRegex = RegExp(r'[A-Z]');
     // final lowercaseRegex = RegExp(r'[a-z]');
     // final digitRegex = RegExp(r'[0-9]');
 
-    if(email.isEmpty || pass.isEmpty){
+    if (email.isEmpty || pass.isEmpty) {
       return 'Email or password can not null';
     }
-      
+
     if (!emailRegex.hasMatch(email)) {
       return 'Your email is not valid'; // Email không đúng định dạng
     }
@@ -236,5 +242,4 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return true; // Email và mật khẩu hợp lệ
   }
-
 }

@@ -38,51 +38,55 @@ class _ProfileState extends State<Profile> {
                 child: Text(
                   'Email here',
                   style: TextStyle(
-                    fontSize: 20.0, 
-                    color: Colors.black,
-                    fontFamily: 'Recoleta',
-                    fontWeight: FontWeight.bold),
+                      fontSize: 20.0,
+                      color: Colors.black,
+                      fontFamily: 'Recoleta',
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ],
           ),
         ),
         const SizedBox(
-          height: 20,),
+          height: 20,
+        ),
         Padding(
           padding: const EdgeInsets.only(left: 8.0, right: 8.0),
           child: ElevatedButton(
               // style: style,
               onPressed: () {},
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(const Color(0XFFBBBBBB)),
-                minimumSize: MaterialStateProperty.all<Size>(const Size(double.infinity, 60.0)),
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(const Color(0XFFBBBBBB)),
+                minimumSize: MaterialStateProperty.all<Size>(
+                    const Size(double.infinity, 60.0)),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                  ), 
-                ),
-              ),
-              child: const Row(children: [
-                Padding(
-                  padding: EdgeInsets.only(right : 10.0),
-                  child: Icon(
-                    Icons.logout,
-                    size: 40.0,
-                    color: Colors.red,),
-                ),
-                Text(
-                'Log out',
-                style: TextStyle(
-                    color: Color(0xFF001524),
-                    fontSize: 25,
-                    fontFamily: 'Recoleta',
-                    fontWeight: FontWeight.w500,
                   ),
                 ),
-              ],)
-               
-            ),
+              ),
+              child: const Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 10.0),
+                    child: Icon(
+                      Icons.logout,
+                      size: 40.0,
+                      color: Colors.red,
+                    ),
+                  ),
+                  Text(
+                    'Log out',
+                    style: TextStyle(
+                      color: Color(0xFF001524),
+                      fontSize: 25,
+                      fontFamily: 'Recoleta',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              )),
         ),
       ],
     );
