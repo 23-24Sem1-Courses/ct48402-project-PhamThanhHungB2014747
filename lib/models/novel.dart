@@ -7,7 +7,7 @@ class Novel {
   final String description;
   final String imageUrl;
   final int countChapter;
-  final ValueNotifier<bool> inlibrary;
+  final ValueNotifier<bool> _inlibrary;
 
   Novel({
     this.id,
@@ -17,56 +17,59 @@ class Novel {
     required this.countChapter,
     required this.imageUrl,
     inlibrary = false,
-  }) : inlibrary = ValueNotifier(inlibrary);
+  }) : _inlibrary = ValueNotifier(inlibrary);
 
-  set isFavorite(bool newValuve){
-    inlibrary.value = newValuve;
+  set isFavorite(bool newValuve) {
+    _inlibrary.value = newValuve;
   }
 
   bool get isInlibrary {
-    return inlibrary.value;
+    return _inlibrary.value;
   }
 
-  ValueNotifier<bool> get isFavoriteListenable{
-    return inlibrary;
+  ValueNotifier<bool> get isFavoriteListenable {
+    return _inlibrary;
   }
+
   Novel copyWith({
     String? id,
-    String? title,
+    String? name,
+    String? author,
     String? description,
-    double? price,
+    int? counterChapter,
     String? imageUrl,
     bool? inlibrary,
   }) {
     return Novel(
       id: id ?? this.id,
-      name: name,
-      author: author,
+      name: name ?? this.name,
+      author: author ?? this.author,
       description: description ?? this.description,
       imageUrl: imageUrl ?? this.imageUrl,
       countChapter: countChapter,
-      inlibrary: inlibrary ?? inlibrary, 
+      inlibrary: inlibrary ?? inlibrary,
     );
   }
 
-  Map<String, dynamic> toJson(){
+  Map<String, dynamic> toJson() {
     return {
-        'name': name,
-        'description': description,
-        'author': author,
-        'imageUrl': imageUrl,
+      'name': name,
+      'author': author,
+      'description': description,
+      // 'countChapter' countChapter,
+      'imageUrl': imageUrl,
     };
   }
 
-  static Novel fromJson(Map<String, dynamic> json){
-    return Novel       (
+  static Novel fromJson(Map<String, dynamic> json) {
+    return Novel(
       id: json['id'],
       name: json['title'],
-      description: json['description'],
       author: json['author'],
-      inlibrary: json['inlibrary'], 
+      description: json['description'],
       countChapter: json['countChapter'],
       imageUrl: json['imageUrl'],
+      inlibrary: json['inlibrary'],
     );
   }
 }

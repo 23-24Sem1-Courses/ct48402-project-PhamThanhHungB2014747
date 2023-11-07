@@ -1,4 +1,6 @@
 // import 'package:ct484_project/ui/home.dart';
+import 'package:ct484_project/ui/novels/novel_manager.dart';
+import 'package:ct484_project/ui/novels/user_novels_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +23,13 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => AuthManager(),
         ),
+        ChangeNotifierProxyProvider<AuthManager, NovelsManager>(
+          create: (ctx) => NovelsManager(),
+          update: (ctx, authManager, novelsManager) {
+            novelsManager!.authToken = authManager.authToken;
+            return novelsManager;
+          },
+        )
       ],
       child: Consumer<AuthManager>(
         builder: (ctx, authManager, child) {
@@ -34,7 +43,26 @@ class MyApp extends StatelessWidget {
                       return snapshot.connectionState == ConnectionState.waiting
                           ? const LoadingSreen()
                           : const AuthScreen();
-                    }),
+                    },
+                  ),
+            routes: {
+              UserNovelsScreen.routeName: (ctx) => const UserNovelsScreen(),
+            },
+            onGenerateRoute: (settings) {
+              if (settings.name == EditNovelScreen.routeName) {
+                final novelId = settings.arguments as String?;
+                return MaterialPageRoute(
+                  builder: (ctx) {
+                    return EditNovelScreen(
+                      novelId != null
+                          ? ctx.read<NovelsManager>().findById(novelId)
+                          : null,
+                    );
+                  },
+                );
+              }
+              return null;
+            },
           );
         },
       ),

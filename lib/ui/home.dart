@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'screens.dart';
-// import 'navigator_page.dart';
-// import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,21 +18,9 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // debugShowCheckedModeBanner: false,
       body: SafeArea(
-        //   child: WillPopScope(
-        //     onWillPop: () async {
-        //       return !await Navigator.maybePop(
-        //           _tabs[_currentIndex].currentState!.context);
-        //     },
         child: IndexedStack(
           index: _currentIndex,
-          // children: <Widget>[
-          //   NavigatorPage(
-          //     title: const Text('Home'),
-          //     navigatorKey: _tabs[0],
-          //   ),
-          // ],
           children: _tabs,
         ),
         //   ),
@@ -60,12 +46,6 @@ class _HomeScreen extends State<HomeScreen> {
             label: 'Profile',
           ),
         ],
-        // currentIndex: _currentIndex,
-        // onTap: (int index) {
-        //   setState(() {
-        //     _currentIndex = index;
-        //   });
-        // }
       ),
     );
   }

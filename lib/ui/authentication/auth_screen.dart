@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'auth_card.dart';
-import 'app_banner.dart';
 
 class AuthScreen extends StatelessWidget {
   static const routeName = '/auth';
@@ -12,7 +11,6 @@ class AuthScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
       body: Stack(
         children: <Widget>[
           Container(
@@ -33,19 +31,6 @@ class AuthScreen extends StatelessWidget {
               height: deviceSize.height,
               width: deviceSize.width,
               child: const AuthCard(),
-              // child: Column(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                // children: <Widget>[
-                //   const Flexible(
-                //     child: AppBanner(),
-                //   ),
-                //   Flexible(
-                //     flex: deviceSize.width > 600 ? 2 : 1,
-                //     child: const AuthCard(),
-                //   ),
-                // ],
-              // ),
             ),
           ),
         ],
