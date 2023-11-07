@@ -39,4 +39,4 @@ flutter:
   fonts: 
     - family: Recoleta
       fonts:
-        - asset: assets/font/Recoleta.otf
+        - asset: assets/font/CooperMdBT-Italic.ttf
