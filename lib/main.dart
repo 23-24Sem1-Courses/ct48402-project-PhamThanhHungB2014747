@@ -1,68 +1,43 @@
-import 'package:ct484_project/ui/novels/novel_manager.dart';
+// import 'package:ct484_project/ui/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
 import './ui/screens.dart';
 
-
-void main() {
+Future<void> main() async {
+  await dotenv.load();
   runApp(const MyApp());
 }
 
 // PageController controller = PageController(initialPage: 0);
 
-class MyApp extends StatefulWidget  {
-  const MyApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-  // @override
-  @override
-  // ignore: library_private_types_in_public_api
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp>{
-  
-  // const MyApp({super.key});
-  
-  int _currentIndex = 0;
-
-  // ignore: unused_field
-  final List<Widget> _tabs = [
-    const ListNovel(),
-    // DetailNovelScreen(NovelsManager().items[1]),
-    LoadingSreen(),
-    const Profile(),
-  ];
   @override
   Widget build(BuildContext context) {
-  return MaterialApp(
-    home: Scaffold(
-        body: IndexedStack(
-          index: _currentIndex,
-          children: _tabs,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AuthManager(),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.my_library_books),
-              label: 'Libary',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-            ),
-          ],
-        ),
+      ],
+      child: Consumer<AuthManager>(
+        builder: (ctx, authManager, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: authManager.isAuth
+                ? const HomeScreen()
+                : FutureBuilder(
+                    future: authManager.tryAutoLogin(),
+                    builder: (ctx, snapshot) {
+                      return snapshot.connectionState == ConnectionState.waiting
+                          ? const LoadingSreen()
+                          : const AuthScreen();
+                    }),
+          );
+        },
       ),
-  );
+    );
   }
 }
-
