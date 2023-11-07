@@ -1,6 +1,7 @@
 import 'package:ct484_project/ui/authentication/auth_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../main.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -59,9 +60,14 @@ class Profile extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.of(context)
-                ..pop()
-                ..pushReplacementNamed('/');
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => const MyApp(),
+                ),
+              );
+              // ..pop()
+              // ..pushReplacementNamed('/');
+
               context.read<AuthManager>().logout();
             },
           ),

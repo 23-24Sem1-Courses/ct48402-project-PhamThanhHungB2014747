@@ -19,8 +19,8 @@ class AuthScreen extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color.fromARGB(255, 117, 255, 198).withOpacity(0.5),
-                  Color.fromARGB(255, 117, 122, 255).withOpacity(0.9),
+                  const Color.fromARGB(255, 117, 255, 198).withOpacity(0.5),
+                  const Color.fromARGB(255, 117, 122, 255).withOpacity(0.9),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -32,19 +32,20 @@ class AuthScreen extends StatelessWidget {
             child: SizedBox(
               height: deviceSize.height,
               width: deviceSize.width,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  const Flexible(
-                    child: AppBanner(),
-                  ),
-                  Flexible(
-                    flex: deviceSize.width > 600 ? 2 : 1,
-                    child: const AuthCard(),
-                  ),
-                ],
-              ),
+              child: const AuthCard(),
+              // child: Column(
+                // mainAxisAlignment: MainAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                // children: <Widget>[
+                //   const Flexible(
+                //     child: AppBanner(),
+                //   ),
+                //   Flexible(
+                //     flex: deviceSize.width > 600 ? 2 : 1,
+                //     child: const AuthCard(),
+                //   ),
+                // ],
+              // ),
             ),
           ),
         ],

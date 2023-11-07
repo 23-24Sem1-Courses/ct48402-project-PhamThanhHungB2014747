@@ -14,8 +14,7 @@ class _HomeScreen extends State<HomeScreen> {
 
   final List<Widget> _tabs = [
     const ListNovel(),
-    // DetailNovelScreen(NovelsManager().items[1]),
-    LoadingSreen(),
+    const LoadingSreen(),
     const Profile(),
   ];
   @override
