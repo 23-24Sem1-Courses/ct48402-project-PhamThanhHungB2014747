@@ -19,18 +19,18 @@ class NovelScreen extends StatelessWidget{
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context, 
-                    MaterialPageRoute(
-                      builder: (context) => DetailNovelScreen(novel)),
-                  );
-                },
-                child: Card(
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                context, 
+                MaterialPageRoute(
+                  builder: (context) => DetailNovelScreen(novel)),
+              );
+            },
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Card(
                   elevation: 5.0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -45,53 +45,53 @@ class NovelScreen extends StatelessWidget{
                         image: NetworkImage(
                           novel.imageUrl,
                         ),
-                        fit: BoxFit.contain,
+                         fit: BoxFit.contain,
                         alignment: Alignment.topLeft,
                       ),
                     ),
                   ),
                 ),
-              ),
-               Positioned(
-                top: 20,
-                right: 50,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      novel.name,
-                      style: const TextStyle(
-                        color: Color(0xFF393939),
-                        fontSize: 20,
-                        fontFamily: 'Recoleta',
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      novel.author,
-                      style: const TextStyle(
-                        color: Color(0xFF393939),
-                        fontSize: 20,
-                        fontFamily: 'Recoleta',
-                      ),
-                    ),
-                    SizedBox(
-                      width: 170,
-                      child: Text(
-                        novel.description,
+                Positioned(
+                  top: 20,
+                  right: 50,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        novel.name,
                         style: const TextStyle(
                           color: Color(0xFF393939),
-                          fontSize: 14,
+                          fontSize: 20,
+                          fontFamily: 'Recoleta',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        novel.author,
+                        style: const TextStyle(
+                          color: Color(0xFF393939),
+                          fontSize: 20,
                           fontFamily: 'Recoleta',
                         ),
-                        maxLines: 4,
-                        overflow: TextOverflow.ellipsis,
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        width: 170,
+                        child: Text(
+                          novel.description,
+                          style: const TextStyle(
+                            color: Color(0xFF393939),
+                            fontSize: 14,
+                            fontFamily: 'Recoleta',
+                          ),
+                          maxLines: 4,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],

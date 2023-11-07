@@ -18,23 +18,32 @@ class DetailNovelScreen extends StatefulWidget {
 
 class _Mydetail extends State<DetailNovelScreen>{
   // const DetailNovelScreen({super.key});
-  String selectedOption = '';
+  String selectedOption = 'About';
   
   _Mydetail(this.novel);
   
   final Novel novel;
 
+    bool isSaved = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: Text('Detail Novel'),
+        title: Text(
+          novel.name,
+          style: const TextStyle(
+              color: Color(0xFFF5F5F5),
+              fontSize: 20,
+              decoration: TextDecoration.none,
+              fontFamily: 'Recoleta',  
+          ),
+          ),
       ),
       body: SingleChildScrollView(
           child: Container(
@@ -42,14 +51,11 @@ class _Mydetail extends State<DetailNovelScreen>{
               borderRadius: BorderRadius.circular(10.0),
               color: Colors.white,
               // color: Colors.grey[200],
-              
             ),
             child: 
-              
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                    
                     Align(
                       alignment: Alignment.center,
                         child: ClipRRect(
@@ -144,6 +150,22 @@ class _Mydetail extends State<DetailNovelScreen>{
                     selectedOption == 'About' 
                       ? buildAbout(novel.description)
                       : buildChapter(novel.countChapter),
+                    // Positioned(
+                    //   // Đặt vị trí của nút "Save" tại góc phải trên cùng
+                    //   top: 100,
+                    //   right:50,
+                    //   child: IconButton(
+                    //     icon: Icon(
+                    //       isSaved ? Icons.bookmark : Icons.bookmark_border,
+                    //       color: Colors.black,
+                    //     ),
+                    //     onPressed: () {
+                    //       setState(() {
+                    //         isSaved = !isSaved;
+                    //       });
+                    //     },
+                    //   ),
+                    // ),
                 ],
               ),
           ),
