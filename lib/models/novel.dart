@@ -7,7 +7,7 @@ class Novel {
   final String description;
   final String imageUrl;
   final int countChapter;
-  final ValueNotifier<bool> _inlibrary;
+  final ValueNotifier<bool> _inLibrary;
 
   Novel({
     this.id,
@@ -16,19 +16,19 @@ class Novel {
     required this.description,
     required this.countChapter,
     required this.imageUrl,
-    inlibrary = false,
-  }) : _inlibrary = ValueNotifier(inlibrary);
+    inLibrary = false,
+  }) : _inLibrary = ValueNotifier(inLibrary);
 
-  set isFavorite(bool newValuve) {
-    _inlibrary.value = newValuve;
+  set inLibrary(bool newValuve) {
+    _inLibrary.value = newValuve;
   }
 
-  bool get isInlibrary {
-    return _inlibrary.value;
+  bool get inLibrary {
+    return _inLibrary.value;
   }
 
-  ValueNotifier<bool> get isFavoriteListenable {
-    return _inlibrary;
+  ValueNotifier<bool> get inLibraryListenable {
+    return _inLibrary;
   }
 
   Novel copyWith({
@@ -38,7 +38,7 @@ class Novel {
     String? description,
     int? counterChapter,
     String? imageUrl,
-    bool? inlibrary,
+    bool? inLibrary,
   }) {
     return Novel(
       id: id ?? this.id,
@@ -47,7 +47,7 @@ class Novel {
       description: description ?? this.description,
       imageUrl: imageUrl ?? this.imageUrl,
       countChapter: countChapter,
-      inlibrary: inlibrary ?? inlibrary,
+      inLibrary: inLibrary ?? this.inLibrary,
     );
   }
 
@@ -56,7 +56,7 @@ class Novel {
       'name': name,
       'author': author,
       'description': description,
-      // 'countChapter' countChapter,
+      'countChapter': countChapter,
       'imageUrl': imageUrl,
     };
   }
@@ -69,7 +69,7 @@ class Novel {
       description: json['description'],
       countChapter: json['countChapter'],
       imageUrl: json['imageUrl'],
-      inlibrary: json['inlibrary'],
+      // inlibrary: json['inlibrary'],
     );
   }
 }

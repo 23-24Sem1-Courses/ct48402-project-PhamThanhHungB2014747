@@ -130,9 +130,9 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
         if (value!.isEmpty) {
           return 'Please enter a author';
         }
-        if (value.length < 10) {
-          return 'Should be at least 10 characters long';
-        }
+        // if (value.length < 10) {
+        //   return 'Should be at least 10 characters long';
+        // }
         return null;
       },
       onSaved: (value) {
@@ -160,7 +160,6 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
         await novelsManager.addNovel(_editedNovel);
       }
     } catch (error) {
-      // ignore: use_build_context_synchronously
       await showErrorDialog(context, 'Something went wrong');
     }
 

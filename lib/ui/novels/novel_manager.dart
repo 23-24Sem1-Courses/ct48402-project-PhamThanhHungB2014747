@@ -2,6 +2,7 @@ import '../../models/novel.dart';
 import 'package:flutter/foundation.dart';
 import '../../models/auth_token.dart';
 import '../../services/novel_service.dart';
+import 'package:flutter/material.dart';
 
 class NovelsManager with ChangeNotifier {
   // List<Novel> _items = [
@@ -50,14 +51,6 @@ class NovelsManager with ChangeNotifier {
     notifyListeners();
   }
 
-  int get itemCount {
-    return _items.length;
-  }
-
-  List<Novel> get items {
-    return [..._items];
-  }
-
   Future<void> addNovel(Novel novel) async {
     final newNovel = await _novelsService.addNovel(novel);
     if (newNovel != null) {
@@ -93,5 +86,26 @@ class NovelsManager with ChangeNotifier {
     } catch (error) {
       return null;
     }
+  }
+
+  void toggleLibraryStatus(Novel novel) async {
+    final savedStatus = novel.inLibrary;
+    novel.inLibrary = !savedStatus;
+
+    if (!await _novelsService.saveLibraryStatus(novel)) {
+      novel.inLibrary = savedStatus;
+    }
+  }
+
+  int get itemCount {
+    return _items.length;
+  }
+
+  List<Novel> get items {
+    return [..._items];
+  }
+
+  List<Novel> get libraryItems {
+    return _items.where((element) => element.inLibrary).toList();
   }
 }

@@ -1,19 +1,18 @@
-import 'package:ct484_project/models/novel.dart';
+import '../../models/novel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 class DetailNovelScreen extends StatefulWidget {
-  const DetailNovelScreen(this.novel, {super.key});
+  static const routeName = '/novel-detail';
+  DetailNovelScreen(this.novel, {super.key});
 
   final Novel novel;
 
   @override
-  // ignore: no_logic_in_create_state
   _Mydetail createState() => _Mydetail(novel);
 }
 
 class _Mydetail extends State<DetailNovelScreen> {
-  // const DetailNovelScreen({super.key});
   String selectedOption = 'About';
 
   _Mydetail(this.novel);

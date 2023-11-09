@@ -1,6 +1,3 @@
-// import 'package:ct484_project/ui/home.dart';
-import 'package:ct484_project/ui/novels/novel_manager.dart';
-import 'package:ct484_project/ui/novels/user_novels_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -49,6 +46,16 @@ class MyApp extends StatelessWidget {
               UserNovelsScreen.routeName: (ctx) => const UserNovelsScreen(),
             },
             onGenerateRoute: (settings) {
+              // if (settings.name == DetailNovelScreen.routeName) {
+              //   final novelId = settings.arguments as String;
+              //   return MaterialPageRoute(
+              //     builder: (ctx) {
+              //       return DetailNovelScreen(
+              //         ctx.read<NovelsManager>().findById(novelId);
+              //       );
+              //     },
+              //   );
+              // }
               if (settings.name == EditNovelScreen.routeName) {
                 final novelId = settings.arguments as String?;
                 return MaterialPageRoute(

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
-
+import 'dart:developer' as dev;
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -41,7 +41,8 @@ class AuthService {
 
       final authToken = _fromJson(responseJson);
       _saveAuthToken(authToken);
-
+      dev.log(authToken.userId);
+      dev.log(authToken.token!);
       return authToken;
     } catch (error) {
       print(error);

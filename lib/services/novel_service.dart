@@ -1,4 +1,5 @@
 import 'dart:convert';
+// import 'dart:html';
 import 'package:http/http.dart' as http;
 import '../models/novel.dart';
 import '../models/auth_token.dart';
@@ -13,31 +14,31 @@ class NovelsService extends FirebaseService {
     try {
       final filters =
           filterByUser ? 'orderBy="creatorId"&equalTo="$userId"' : '';
-      final novelUrl =
+      final novelsUrl =
           Uri.parse('$databaseUrl/novels.json?auth=$token&$filters');
-      final response = await http.get(novelUrl);
-      final novelSMap = json.decode(response.body) as Map<String, dynamic>;
+      final response = await http.get(novelsUrl);
+      final novelsMap = json.decode(response.body) as Map<String, dynamic>;
 
       if (response.statusCode != 200) {
-        print(novelSMap['error']);
+        print(novelsMap['error']);
         return novels;
       }
 
-      final userFavoritesUrl =
-          Uri.parse('$databaseUrl/userFavorites/$userId.json?auth=$token');
-      final userFavoritesResponse = await http.get(userFavoritesUrl);
-      final userFavoritesMap = json.decode(userFavoritesResponse.body);
+      final userLibrarysUrl =
+          Uri.parse('$databaseUrl/userLibrarys/$userId.json?auth=$token');
+      final userLibrarysResponse = await http.get(userLibrarysUrl);
+      final userLibrarysMap = json.decode(userLibrarysResponse.body);
 
-      novelSMap.forEach((novelId, novel) {
-        final inLibrary = (userFavoritesMap == null)
+      novelsMap.forEach((novelId, novel) {
+        final inLibrary = (userLibrarysMap == null)
             ? false
-            : (userFavoritesMap[novelId] ?? false);
+            : (userLibrarysMap[novelId] ?? false);
 
         novels.add(
           Novel.fromJson({
             'id': novelId,
             ...novel,
-          }).copyWith(inlibrary: inLibrary),
+          }).copyWith(inLibrary: inLibrary),
         );
       });
       return novels;
@@ -49,7 +50,6 @@ class NovelsService extends FirebaseService {
 
   Future<Novel?> addNovel(Novel novel) async {
     try {
-      // ignore: non_constant_identifier_names
       final Url = Uri.parse('$databaseUrl/novels.json?auth=$token');
       final response = await http.post(
         Url,
@@ -106,25 +106,25 @@ class NovelsService extends FirebaseService {
     }
   }
 
-  // Future<bool> saveFavoriteStatus(Product product) async {
-  //   try {
-  //     final url = Uri.parse(
-  //         '$databaseUrl/userFavorites/$userId/${product.id}.json?auth=$token');
-  //     final response = await http.put(
-  //       url,
-  //       body: json.encode(
-  //         product.isFavorite,
-  //       ),
-  //     );
+  Future<bool> saveLibraryStatus(Novel novel) async {
+    try {
+      final url = Uri.parse(
+          '$databaseUrl/userLibrarys/$userId/${novel.id}.json?auth=$token');
+      final response = await http.put(
+        url,
+        body: json.encode(
+          novel.inLibrary,
+        ),
+      );
 
-  //     if (response.statusCode != 200) {
-  //       throw Exception(json.decode(response.body)['error']);
-  //     }
+      if (response.statusCode != 200) {
+        throw Exception(json.decode(response.body)['error']);
+      }
 
-  //     return true;
-  //   } catch (error) {
-  //     print(error);
-  //     return false;
-  //   }
-  // }
+      return true;
+    } catch (error) {
+      print(error);
+      return false;
+    }
+  }
 }

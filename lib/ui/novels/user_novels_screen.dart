@@ -2,7 +2,6 @@ import 'package:ct484_project/ui/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'user_novel_list_tile.dart';
-import './novel_manager.dart';
 
 class UserNovelsScreen extends StatelessWidget {
   static const routeName = '/user-novels';
@@ -34,17 +33,6 @@ class UserNovelsScreen extends StatelessWidget {
     );
   }
 
-  Widget buildAddButton(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        Navigator.of(context).pushNamed(
-          EditNovelScreen.routeName,
-        );
-      },
-      icon: const Icon(Icons.add),
-    );
-  }
-
   Widget buildUserNovelListView() {
     return Consumer<NovelsManager>(
       builder: (ctx, novelsManager, child) {
@@ -60,6 +48,17 @@ class UserNovelsScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  Widget buildAddButton(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        Navigator.of(context).pushNamed(
+          EditNovelScreen.routeName,
+        );
+      },
+      icon: const Icon(Icons.add),
     );
   }
 }

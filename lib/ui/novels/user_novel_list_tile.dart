@@ -1,5 +1,5 @@
-import 'package:ct484_project/ui/novels/novel_manager.dart';
-import 'package:ct484_project/ui/screens.dart';
+import 'novel_manager.dart';
+import 'edit_novel_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/novel.dart';
