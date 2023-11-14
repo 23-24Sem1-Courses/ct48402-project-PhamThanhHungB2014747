@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/novel.dart';
 import './detail_novel_screen.dart';
+import './novel_manager.dart';
 
 class NovelScreen extends StatelessWidget {
   const NovelScreen(this.novel, {super.key});
@@ -55,14 +57,18 @@ class NovelScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            novel.name,
-                            style: const TextStyle(
-                              color: Color(0xFF393939),
-                              fontSize: 20,
-                              fontFamily: 'Recoleta',
-                              fontWeight: FontWeight.bold,
-                            ),
+                          Row(
+                            children: [
+                              Text(
+                                novel.name,
+                                style: const TextStyle(
+                                  color: Color(0xFF393939),
+                                  fontSize: 20,
+                                  fontFamily: 'Recoleta',
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                           Text(
                             novel.author,
@@ -88,6 +94,42 @@ class NovelScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+
+                    // Positioned(
+                    //   top: 10,
+                    //   right: 10,
+                    //   // child: GestureDetector(
+                    //   //   onTap: () {
+                    //   //     context.read<NovelsManager>().toggleLibraryStatus(novel);
+                    //   //   },
+                    //   //   child: const Icon(
+                    //   //     inLibrary ? Icons.bookmark_border : Icons.bookmark,
+                    //   //     size: 30,
+                    //   //     color: Color.fromARGB(255, 150, 212, 152),
+                    //   //   ),
+                    //   // ),
+                    //   child: ,
+                    // ),
+                    Positioned(
+                      top: 10,
+                      right: 10,
+                      child: ValueListenableBuilder<bool>(
+                        valueListenable: novel.inLibraryListenable,
+                        builder:
+                            (BuildContext context, bool value, Widget? child) {
+                          return GestureDetector(
+                            onTap: () {
+                              context.read<NovelsManager>().toggleLibraryStatus(novel);
+                            },
+                            child: Icon(
+                              value ? Icons.bookmark : Icons.bookmark_border,
+                              size: 30,
+                              color: value ? Colors.green : Colors.grey,
+                            ),
+                          );
+                        },
+                      ),
+                    )
                   ],
                 ),
               ),

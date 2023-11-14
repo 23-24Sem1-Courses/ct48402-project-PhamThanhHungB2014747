@@ -1,6 +1,10 @@
+import 'package:provider/provider.dart';
+
 import '../../models/novel.dart';
+import './novel_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+
 
 class DetailNovelScreen extends StatefulWidget {
   static const routeName = '/novel-detail';
@@ -39,6 +43,27 @@ class _Mydetail extends State<DetailNovelScreen> {
             fontFamily: 'Recoleta',
           ),
         ),
+        actions: [
+          Builder(
+            builder: (BuildContext context) {
+              return ValueListenableBuilder<bool>(
+                valueListenable: novel.inLibraryListenable,
+                builder: (BuildContext context, bool value, Widget? child) {
+                  return IconButton(
+                    icon: Icon(
+                      value ? Icons.bookmark : Icons.bookmark_border,
+                      size: 30,
+                      color: value ? Colors.green : Colors.white,
+                    ),
+                    onPressed: () {
+                      context.read<NovelsManager>().toggleLibraryStatus(novel);
+                    },
+                  );
+                },
+              );
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(

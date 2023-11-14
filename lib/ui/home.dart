@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'novels/novel_libery_list_screen.dart';
 import 'screens.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,7 +13,7 @@ class _HomeScreen extends State<HomeScreen> {
 
   final List<Widget> _tabs = [
     const ListNovel(),
-    const LoadingSreen(),
+    const ListLibaryNovel(),
     const Profile(),
   ];
   @override
