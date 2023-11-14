@@ -1,4 +1,4 @@
-import 'package:ct484_project/ui/novels/list_novel_screen.dart';
+// import 'package:ct484_project/ui/novels/list_novel_screen.dart';
 import 'package:provider/provider.dart';
 
 import './novel_creen.dart';

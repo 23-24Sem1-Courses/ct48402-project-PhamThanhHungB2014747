@@ -54,7 +54,7 @@ class Profile extends StatelessWidget {
               color: Colors.blue,
             ),
             title: const Text(
-              'Manage Novelss',
+              'Manage Novels',
               style: TextStyle(
                 color: Color(0xFF001524),
                 fontSize: 25,

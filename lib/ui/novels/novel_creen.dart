@@ -94,22 +94,6 @@ class NovelScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-
-                    // Positioned(
-                    //   top: 10,
-                    //   right: 10,
-                    //   // child: GestureDetector(
-                    //   //   onTap: () {
-                    //   //     context.read<NovelsManager>().toggleLibraryStatus(novel);
-                    //   //   },
-                    //   //   child: const Icon(
-                    //   //     inLibrary ? Icons.bookmark_border : Icons.bookmark,
-                    //   //     size: 30,
-                    //   //     color: Color.fromARGB(255, 150, 212, 152),
-                    //   //   ),
-                    //   // ),
-                    //   child: ,
-                    // ),
                     Positioned(
                       top: 10,
                       right: 10,
@@ -119,7 +103,9 @@ class NovelScreen extends StatelessWidget {
                             (BuildContext context, bool value, Widget? child) {
                           return GestureDetector(
                             onTap: () {
-                              context.read<NovelsManager>().toggleLibraryStatus(novel);
+                              context
+                                  .read<NovelsManager>()
+                                  .toggleLibraryStatus(novel);
                             },
                             child: Icon(
                               value ? Icons.bookmark : Icons.bookmark_border,

@@ -1,14 +1,12 @@
+import 'package:ct484_project/ui/screens.dart';
 import 'package:provider/provider.dart';
-
 import '../../models/novel.dart';
-import './novel_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-
+// import 'package:flutter/cupertino.dart';
 
 class DetailNovelScreen extends StatefulWidget {
   static const routeName = '/novel-detail';
-  DetailNovelScreen(this.novel, {super.key});
+  const DetailNovelScreen(this.novel, {super.key});
 
   final Novel novel;
 
@@ -177,22 +175,6 @@ class _Mydetail extends State<DetailNovelScreen> {
               selectedOption == 'About'
                   ? buildAbout(novel.description)
                   : buildChapter(novel.countChapter),
-              // Positioned(
-              //   // Đặt vị trí của nút "Save" tại góc phải trên cùng
-              //   top: 100,
-              //   right:50,
-              //   child: IconButton(
-              //     icon: Icon(
-              //       isSaved ? Icons.bookmark : Icons.bookmark_border,
-              //       color: Colors.black,
-              //     ),
-              //     onPressed: () {
-              //       setState(() {
-              //         isSaved = !isSaved;
-              //       });
-              //     },
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -242,7 +224,7 @@ class _Mydetail extends State<DetailNovelScreen> {
                 child: Row(
                   children: [
                     Text(
-                      'Chapter $temp',
+                      'Chapter ${temp + 1}',
                       style: const TextStyle(
                         color: Color(0xFF001524),
                         fontSize: 25,

@@ -46,16 +46,6 @@ class MyApp extends StatelessWidget {
               UserNovelsScreen.routeName: (ctx) => const UserNovelsScreen(),
             },
             onGenerateRoute: (settings) {
-              // if (settings.name == DetailNovelScreen.routeName) {
-              //   final novelId = settings.arguments as String;
-              //   return MaterialPageRoute(
-              //     builder: (ctx) {
-              //       return DetailNovelScreen(
-              //         ctx.read<NovelsManager>().findById(novelId);
-              //       );
-              //     },
-              //   );
-              // }
               if (settings.name == EditNovelScreen.routeName) {
                 final novelId = settings.arguments as String?;
                 return MaterialPageRoute(
