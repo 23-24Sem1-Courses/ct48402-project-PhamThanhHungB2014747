@@ -64,7 +64,7 @@ class Novel {
   static Novel fromJson(Map<String, dynamic> json) {
     return Novel(
       id: json['id'],
-      name: json['title'],
+      name: json['name'],
       author: json['author'],
       description: json['description'],
       countChapter: json['countChapter'],
