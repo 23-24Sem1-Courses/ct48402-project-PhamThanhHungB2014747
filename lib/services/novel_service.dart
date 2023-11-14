@@ -76,6 +76,7 @@ class NovelsService extends FirebaseService {
   Future<bool> updateNovel(Novel novel) async {
     try {
       final url = Uri.parse('$databaseUrl/novels/${novel.id}.json?auth=$token');
+      // print(novel.countChapter);
       final response = await http.patch(
         url,
         body: json.encode(novel.toJson()),

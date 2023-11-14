@@ -54,7 +54,7 @@ class Profile extends StatelessWidget {
               color: Colors.blue,
             ),
             title: const Text(
-              'Manage Novels',
+              'Manage Novelss',
               style: TextStyle(
                 color: Color(0xFF001524),
                 fontSize: 25,
@@ -63,10 +63,10 @@ class Profile extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.of(context).pushReplacement(
+              Navigator.push(
+                context,
                 MaterialPageRoute(
-                  builder: (context) => const UserNovelsScreen(),
-                ),
+                    builder: (context) => const UserNovelsScreen()),
               );
             },
           ),

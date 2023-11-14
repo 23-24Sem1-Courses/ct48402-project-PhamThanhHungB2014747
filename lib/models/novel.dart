@@ -36,7 +36,7 @@ class Novel {
     String? name,
     String? author,
     String? description,
-    int? counterChapter,
+    int? countChapter,
     String? imageUrl,
     bool? inLibrary,
   }) {
@@ -46,7 +46,7 @@ class Novel {
       author: author ?? this.author,
       description: description ?? this.description,
       imageUrl: imageUrl ?? this.imageUrl,
-      countChapter: countChapter,
+      countChapter: countChapter ?? this.countChapter,
       inLibrary: inLibrary ?? this.inLibrary,
     );
   }

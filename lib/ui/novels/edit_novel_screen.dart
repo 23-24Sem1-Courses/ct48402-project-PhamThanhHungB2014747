@@ -155,6 +155,7 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
     try {
       final novelsManager = context.read<NovelsManager>();
       if (_editedNovel.id != null) {
+        // print(_editedNovel.countChapter);
         await novelsManager.updateNovel(_editedNovel);
       } else {
         await novelsManager.addNovel(_editedNovel);
@@ -212,7 +213,9 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
         return null;
       },
       onSaved: (value) {
-        _editedNovel = _editedNovel.copyWith(counterChapter: int.parse(value!));
+        // print(int.parse(value!));
+        _editedNovel = _editedNovel.copyWith(countChapter: int.tryParse(value!));
+        print(_editedNovel.countChapter);
       },
     );
   }
