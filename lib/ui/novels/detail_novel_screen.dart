@@ -1,6 +1,8 @@
+import 'package:ct484_project/ui/chapter/chapter_screen.dart';
 import 'package:ct484_project/ui/screens.dart';
 import 'package:provider/provider.dart';
 import '../../models/novel.dart';
+import './novel_manager.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/cupertino.dart';
 
@@ -204,12 +206,19 @@ class _Mydetail extends State<DetailNovelScreen> {
     return Padding(
       padding: const EdgeInsets.only(right: 10.0, left: 10, top: 15),
       child: Column(
-        children: List.generate(index, (temp) {
+        children: List.generate(index, (int temp) {
+          int chapterNumber = temp + 1;
           return Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: ElevatedButton(
                 // style: style,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ChapterScreen(chapterNumber,novel.id)),
+                  );
+                },
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all<Color>(const Color(0XFFBBBBBB)),

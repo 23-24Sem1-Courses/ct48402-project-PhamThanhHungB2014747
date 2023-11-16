@@ -1,55 +1,25 @@
-import 'package:flutter/foundation.dart';
+import 'dart:convert';
 
-class Page {
-  final String? title;
-  final String content;
-  final int NunberPage;
-  final ValueNotifier<bool> _readed;
-  Page({
-    this.title,
-    required this.content,
-    required this.NunberPage,
-    readed = false,
-  }) : _readed = ValueNotifier(readed);
+class Chapter {
+  int chapterCount;
+  List<String> chapterContent;
 
-  set isreaded(bool newValuve){
-    _readed.value = newValuve;
+  Chapter({required this.chapterCount, required this.chapterContent});
+
+  void displayChapter(int index) {
+    if (index >= 0 && index < chapterCount) {
+      print("Chapter ${index + 1}: ${chapterContent[index]}");
+    }
   }
 
-  bool get isFavorite {
-    return _readed.value;
+  void displayAllChapters() {
+    for (int i = 0; i < chapterCount; i++) {
+      print("Chapter ${i + 1}: ${chapterContent[i]}");
+    }
   }
-
-  ValueNotifier<bool> get isFavoriteListenable{
-    return _readed;
-  }
-  Page copyWith({
-    String? title,
-    String? content,
-    int? NunberPage,
-    bool? readed,
-  }) {
-    return Page(
-      title: title ?? this.title,
-      content: content ?? this.content,
-      NunberPage: NunberPage ?? this.NunberPage,
-      readed: readed ?? this._readed,
-    );
-  }
-
-  Map<String, dynamic> toJson(){
-    return {
-        'title': title,
-        'content': content,
-        'NunberPage': NunberPage,
-    };
-  }
-
-  static Page fromJson(Map<String, dynamic> json){
-    return Page(
-      title: json['title'],
-      content: json['content'],
-      NunberPage: json['NunberPage'],
-    );
+  
+  void addChapterContent(String content) {
+    chapterContent.add(content);
+    chapterCount++;
   }
 }
