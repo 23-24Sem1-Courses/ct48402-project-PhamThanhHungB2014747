@@ -1,8 +1,11 @@
+import 'package:ct484_project/ui/novels/novel_grid.dart';
 import 'package:provider/provider.dart';
-import './novel_creen.dart';
+// import './novel_creen.dart';
 import 'package:flutter/material.dart';
 import './novel_manager.dart';
 import '../../models/novel.dart';
+
+enum FilterOptions { library }
 
 class ListLibaryNovel extends StatefulWidget {
   const ListLibaryNovel({super.key});
@@ -12,9 +15,10 @@ class ListLibaryNovel extends StatefulWidget {
 }
 
 class _ListLibaryNovel extends State<ListLibaryNovel> {
-  // final _showInLibrary = ValueNotifier<bool>(true);
+  final _showInLibrary = ValueNotifier<bool>(false);
   late final Novel novel;
   late Future<void> _fetchNovels;
+
   @override
   void initState() {
     super.initState();
@@ -24,62 +28,65 @@ class _ListLibaryNovel extends State<ListLibaryNovel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const Text(
-            'Libary',
-            style: TextStyle(
-              color: Color(0xFF393939),
-              fontSize: 35,
-              fontFamily: 'Recoleta',
+      appBar: AppBar(
+          elevation: 0,
+          toolbarHeight: 60,
+          backgroundColor: Colors.white,
+          title: const Center(
+            child: Text(
+              'Libary',
+              style: TextStyle(
+                color: Color(0xFF393939),
+                fontSize: 35,
+                fontFamily: 'Recoleta',
+              ),
+              maxLines: 4,
+              overflow: TextOverflow.ellipsis,
             ),
-            maxLines: 4,
-            overflow: TextOverflow.ellipsis,
           ),
-          FutureBuilder(
-            future: _fetchNovels,
-            builder: (ctx, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                // return const SingleChildScrollView(
-                //   child: SizedBox(
-                //     height: 800,
-                //     child: Scaffold(),
-                //   ),
-                // );
-                return ValueListenableBuilder<bool>(
-                  valueListenable: novel.inLibraryListenable,
-                  builder: (context, inLibrary, child) {
-                    return const SingleChildScrollView(
-                      child: SizedBox(
-                        child: Scaffold(),
-                      ),
-                    );
-                  },
-                );
-              }
-              return RefreshIndicator(
-                onRefresh: () =>
-                    context.read<NovelsManager>().fetchNovels(true),
-                child: buildNovelListView(),
-              );
-            },
-          ),
-        ],
+          actions: <Widget>[
+            buildNovelFilterMenu(),
+          ]),
+      body: FutureBuilder(
+        future: _fetchNovels,
+        builder: (ctx, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return ValueListenableBuilder<bool>(
+              valueListenable: _showInLibrary,
+              builder: (context, inLibrary, child) {
+                return NovelGrid(inLibrary);
+              },
+            );
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
-}
 
-Widget buildNovelListView() {
-  return Consumer<NovelsManager>(
-    builder: (ctx, novelsManager, child) {
-      return ListView.builder(
-        shrinkWrap: true,
-        itemCount: novelsManager.itemCount,
-        itemBuilder: (BuildContext context, int index) {
-          return NovelScreen(novelsManager.items[index]);
-        },
-      );
-    },
-  );
+  Widget buildNovelFilterMenu() {
+    return PopupMenuButton(
+      onSelected: (FilterOptions selectedValue) {
+        setState(() {
+          if (selectedValue == FilterOptions.library) {
+            _showInLibrary.value = true;
+          } else {
+            _showInLibrary.value = false;
+          }
+        });
+      },
+      icon: const Icon(
+        color: Colors.black,
+        Icons.more_vert,
+      ),
+      itemBuilder: (ctx) => [
+        const PopupMenuItem(
+          value: FilterOptions.library,
+          child: Text('In Library'),
+        ),
+      ],
+    );
+  }
 }

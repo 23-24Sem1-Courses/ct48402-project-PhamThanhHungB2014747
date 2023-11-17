@@ -1,5 +1,3 @@
-// import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/novel.dart';
@@ -72,7 +70,7 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit Novel'),
+        title: const Center(child: Text('Edit Novel')),
         actions: <Widget>[
           IconButton(
             onPressed: _saveForm,
@@ -90,10 +88,29 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
                 key: _editForm,
                 child: ListView(
                   children: <Widget>[
+                    const SizedBox(
+                      height: 10,
+                    ),
                     buildTitleField(),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     buildAuthorField(),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     buildCountField(),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     buildDescriptionField(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    buildImageURLField(),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     buildNovelPreview(),
                   ],
                 ),
@@ -105,7 +122,28 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
   TextFormField buildTitleField() {
     return TextFormField(
       initialValue: _editedNovel.name,
-      decoration: const InputDecoration(labelText: 'Name'),
+      decoration: const InputDecoration(
+        labelText: 'Name',
+        labelStyle: TextStyle(
+          color: Color(0xFF6096B4),
+          fontSize: 15,
+          fontWeight: FontWeight.w600,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(
+            width: 1,
+            color: Color(0xFF837E93),
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(
+            width: 1,
+            color: Color(0xFF6096B4),
+          ),
+        ),
+      ),
       textInputAction: TextInputAction.next,
       autofocus: true,
       validator: (value) {
@@ -123,7 +161,28 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
   TextFormField buildAuthorField() {
     return TextFormField(
       initialValue: _editedNovel.author,
-      decoration: const InputDecoration(labelText: 'Author'),
+      decoration: const InputDecoration(
+        labelText: 'Author',
+        labelStyle: TextStyle(
+          color: Color(0xFF6096B4),
+          fontSize: 15,
+          fontWeight: FontWeight.w600,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(
+            width: 1,
+            color: Color(0xFF837E93),
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(
+            width: 1,
+            color: Color(0xFF6096B4),
+          ),
+        ),
+      ),
       textInputAction: TextInputAction.next,
       keyboardType: TextInputType.text,
       validator: (value) {
@@ -176,8 +235,29 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
   TextFormField buildDescriptionField() {
     return TextFormField(
       initialValue: _editedNovel.description,
-      decoration: const InputDecoration(labelText: 'Description'),
-      maxLines: 3,
+      decoration: const InputDecoration(
+        labelText: 'Description',
+        labelStyle: TextStyle(
+          color: Color(0xFF6096B4),
+          fontSize: 15,
+          fontWeight: FontWeight.w600,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(
+            // width: 0,
+            color: Color(0xFF837E93),
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(
+            width: 1,
+            color: Color(0xFF6096B4),
+          ),
+        ),
+      ),
+      maxLines: 2,
       keyboardType: TextInputType.multiline,
       validator: (value) {
         if (value!.isEmpty) {
@@ -197,7 +277,28 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
   TextFormField buildCountField() {
     return TextFormField(
       initialValue: _editedNovel.countChapter.toString(),
-      decoration: const InputDecoration(labelText: 'Chapter'),
+      decoration: const InputDecoration(
+        labelText: 'Chapter',
+        labelStyle: TextStyle(
+          color: Color(0xFF6096B4),
+          fontSize: 15,
+          fontWeight: FontWeight.w600,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(
+            width: 1,
+            color: Color(0xFF837E93),
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(
+            width: 1,
+            color: Color(0xFF6096B4),
+          ),
+        ),
+      ),
       textInputAction: TextInputAction.next,
       keyboardType: TextInputType.number,
       validator: (value) {
@@ -214,7 +315,8 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
       },
       onSaved: (value) {
         // print(int.parse(value!));
-        _editedNovel = _editedNovel.copyWith(countChapter: int.tryParse(value!));
+        _editedNovel =
+            _editedNovel.copyWith(countChapter: int.tryParse(value!));
         print(_editedNovel.countChapter);
       },
     );
@@ -225,29 +327,35 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
         Container(
-          width: 100,
+          width: 377,
           height: 100,
           margin: const EdgeInsets.only(
             top: 8,
-            right: 10,
           ),
           decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
             border: Border.all(
               width: 1,
               color: Colors.grey,
             ),
           ),
           child: _imageUrlController.text.isEmpty
-              ? const Text('Enter a URL')
+              ? const Text(
+                  ' Enter a URL',
+                  style: TextStyle(
+                    color: Color(0xFF6096B4),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                  ),
+                )
               : FittedBox(
                   child: Image.network(
+                    width: 200,
+                    height: 150,
                     _imageUrlController.text,
                     fit: BoxFit.cover,
                   ),
                 ),
-        ),
-        Expanded(
-          child: buildImageURLField(),
         ),
       ],
     );
@@ -255,7 +363,28 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
 
   TextFormField buildImageURLField() {
     return TextFormField(
-      decoration: const InputDecoration(labelText: 'Image URL'),
+      decoration: const InputDecoration(
+        labelText: 'Image URL',
+        labelStyle: TextStyle(
+          color: Color(0xFF6096B4),
+          fontSize: 15,
+          fontWeight: FontWeight.w600,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(
+            // width: 0,
+            color: Color(0xFF837E93),
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(
+            width: 1,
+            color: Color(0xFF6096B4),
+          ),
+        ),
+      ),
       keyboardType: TextInputType.url,
       textInputAction: TextInputAction.done,
       controller: _imageUrlController,

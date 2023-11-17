@@ -1,3 +1,4 @@
+import 'slider.dart';
 import 'package:provider/provider.dart';
 import './novel_creen.dart';
 import 'package:flutter/material.dart';
@@ -46,9 +47,6 @@ class _ListNovel extends State<ListNovel> {
                 hintText: "Search name"),
           ),
         ),
-        // actions: [
-        //   buildSlider(),
-        // ],
       ),
       body: FutureBuilder(
         future: _fetchNovels,
@@ -57,13 +55,7 @@ class _ListNovel extends State<ListNovel> {
             return SingleChildScrollView(
               child: SizedBox(
                 height: 800,
-                child: Scaffold(
-                  appBar: AppBar(
-                    elevation: 0,
-                    backgroundColor: Colors.white,
-                    toolbarHeight: 60,
-                  ),
-                ),
+                child: Scaffold(),
               ),
             );
           }
