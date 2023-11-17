@@ -1,4 +1,4 @@
-export './profile_screen.dart';
+export 'authentication/profile_screen.dart';
 export './home.dart';
 export '../ui/novels/novel_manager.dart';
 export '../ui/novels/list_novel_screen.dart';

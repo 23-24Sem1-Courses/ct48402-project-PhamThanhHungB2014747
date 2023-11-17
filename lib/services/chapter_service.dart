@@ -2,7 +2,7 @@ import 'dart:convert';
 // import 'dart:html';
 import 'package:ct484_project/models/chapter.dart';
 import 'package:http/http.dart' as http;
-import '../models/chapter.dart';
+// import '../models/chapter.dart';
 import '../models/auth_token.dart';
 import 'firebase_service.dart';
 

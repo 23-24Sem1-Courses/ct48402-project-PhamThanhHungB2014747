@@ -2,7 +2,7 @@ import 'package:ct484_project/ui/authentication/auth_manager.dart';
 import 'package:ct484_project/ui/novels/user_novels_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../main.dart';
+import '../../../main.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -33,7 +33,7 @@ class Profile extends StatelessWidget {
                 const Positioned(
                   bottom: 40.0,
                   child: Text(
-                    'Email here',
+                    'admin',
                     style: TextStyle(
                         fontSize: 20.0,
                         color: Colors.black,

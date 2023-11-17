@@ -12,6 +12,7 @@ class _HomeScreen extends State<HomeScreen> {
   int _currentIndex = 0;
 
   final List<Widget> _tabs = [
+    // ignore: prefer_const_constructors
     const ListNovel(),
     const ListLibaryNovel(),
     const Profile(),

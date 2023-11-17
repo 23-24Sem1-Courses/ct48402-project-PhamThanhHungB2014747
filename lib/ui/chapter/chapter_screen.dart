@@ -1,4 +1,4 @@
-import 'package:ct484_project/models/chapter.dart';
+// import '../../models/chapter.dart';
 import 'package:flutter/material.dart';
 
 import '../chapter/chapter_manager.dart';
@@ -36,15 +36,15 @@ class _ChapterScreenState extends State<ChapterScreen> {
 
   void _incrementChapter() {
     setState(() {
-      if(_chaptersManager.items.chapterCount > currentChapter + 1)
+      if (_chaptersManager.items.chapterCount > currentChapter + 1)
         currentChapter++; // Tăng giá trị widget.idChapter lên 1
-      });
+    });
   }
 
   void _decrementChapter() {
     setState(() {
-      if (currentChapter > 1){
-      currentChapter--; // Giảm giá trị widget.idChapter đi 1
+      if (currentChapter > 1) {
+        currentChapter--; // Giảm giá trị widget.idChapter đi 1
       }
     });
   }
@@ -71,11 +71,11 @@ class _ChapterScreenState extends State<ChapterScreen> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.arrow_left),
+            icon: const Icon(Icons.arrow_left),
             onPressed: _decrementChapter,
           ),
           IconButton(
-            icon: Icon(Icons.arrow_right),
+            icon: const Icon(Icons.arrow_right),
             onPressed: _incrementChapter,
           ),
         ],
