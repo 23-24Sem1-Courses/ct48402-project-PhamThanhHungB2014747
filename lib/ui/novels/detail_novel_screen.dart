@@ -216,7 +216,7 @@ class _Mydetail extends State<DetailNovelScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ChapterScreen(chapterNumber,novel.id)),
+                        builder: (context) => ChapterScreen(chapterNumber,id: novel.id ?? '')),
                   );
                 },
                 style: ButtonStyle(

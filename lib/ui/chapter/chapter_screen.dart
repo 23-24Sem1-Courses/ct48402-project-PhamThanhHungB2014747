@@ -4,51 +4,55 @@ import 'package:flutter/material.dart';
 import '../chapter/chapter_manager.dart';
 
 class ChapterScreen extends StatefulWidget {
-  final int idChapter;
-  const ChapterScreen(this.idChapter, String? id, {Key? key}) : super(key: key);
+  final int chapterNumber;
+  final String? id; // Thêm thuộc tính id từ lớp cha
+  const ChapterScreen(this.chapterNumber, {required this.id, Key? key})
+      : super(key: key);
 
   @override
   State<ChapterScreen> createState() => _ChapterScreenState();
 }
 
 class _ChapterScreenState extends State<ChapterScreen> {
-  String? get id => null;
   ChaptersManager _chaptersManager = ChaptersManager();
 
   bool _shouldReload = false;
   int currentChapter = 0;
-   final _scrollController = ScrollController();
-
+  final _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     _initializeChaptersManager();
-    currentChapter = widget.idChapter;
+    currentChapter = widget.chapterNumber - 1;
   }
 
   void _initializeChaptersManager() async {
     _chaptersManager = ChaptersManager();
-    await _chaptersManager.fetchChapters(id ?? "");
-    _shouldReload = true;
+    // print(widget.id);
+    await _chaptersManager.fetchChapters(widget.id ?? "");
     setState(() {
-      _shouldReload = true;
+      if (_chaptersManager.items.chapterCount > 0) {
+        _shouldReload = true;
+      }
     });
   }
 
   void _incrementChapter() {
     setState(() {
-      if (_chaptersManager.items.chapterCount > currentChapter + 1)
+      if (_chaptersManager.items.chapterCount > currentChapter + 1) {
         currentChapter++;
-        _scrollToTop();// Tăng giá trị widget.idChapter lên 1
+        print(currentChapter);
+      }
+      _scrollToTop(); // Tăng giá trị widget.idChapter lên 1
     });
   }
 
   void _decrementChapter() {
     setState(() {
-      if (currentChapter > 1) {
-        currentChapter--; 
-        _scrollToTop();// Giảm giá trị widget.idChapter đi 1
+      if (currentChapter > 0) {
+        currentChapter--;
+        _scrollToTop(); // Giảm giá trị widget.idChapter đi 1
       }
     });
   }
@@ -63,7 +67,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // print(_chaptersManager.items.chapterCount);
+    // print(_chaptersManager);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -73,7 +77,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
           },
         ),
         title: Text(
-          'Chapter $currentChapter',
+          'Chapter ${currentChapter + 1}',
           style: const TextStyle(
             color: Color(0xFFF5F5F5),
             fontSize: 20,
@@ -98,6 +102,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
           padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
           child: Text(
             _shouldReload == true
+                // ? ''
                 ? _chaptersManager.items.chapterContent[currentChapter]
                 : '',
             style: const TextStyle(
