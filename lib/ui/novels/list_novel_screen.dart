@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import './novel_manager.dart';
 import '../screens.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'search.dart';
 
 class ListNovel extends StatefulWidget {
   const ListNovel({super.key});

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'auth_card.dart';
 
 class AuthScreen extends StatelessWidget {

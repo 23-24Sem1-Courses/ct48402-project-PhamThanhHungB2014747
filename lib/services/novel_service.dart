@@ -1,5 +1,4 @@
 import 'dart:convert';
-// import 'dart:html';
 import 'package:http/http.dart' as http;
 import '../models/novel.dart';
 import '../models/auth_token.dart';

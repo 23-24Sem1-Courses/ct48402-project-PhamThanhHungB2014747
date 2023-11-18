@@ -1,6 +1,4 @@
-// import '../../models/chapter.dart';
 import 'package:flutter/material.dart';
-
 import '../chapter/chapter_manager.dart';
 
 class ChapterScreen extends StatefulWidget {
@@ -67,7 +65,6 @@ class _ChapterScreenState extends State<ChapterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // print(_chaptersManager);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

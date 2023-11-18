@@ -189,9 +189,6 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
         if (value!.isEmpty) {
           return 'Please enter a author';
         }
-        // if (value.length < 10) {
-        //   return 'Should be at least 10 characters long';
-        // }
         return null;
       },
       onSaved: (value) {
@@ -263,9 +260,6 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
         if (value!.isEmpty) {
           return 'Please enter a description';
         }
-        // if (value.length < 20) {
-        //   return 'Should be at least 10 characters long';
-        // }
         return null;
       },
       onSaved: (value) {
@@ -327,7 +321,7 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
         Container(
-          width: 360,
+          width: 377,
           height: 100,
           margin: const EdgeInsets.only(
             top: 8,

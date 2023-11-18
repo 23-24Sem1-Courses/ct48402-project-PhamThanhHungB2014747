@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../models/http_exception.dart';
 import '../customdialog.dart';
-// import './app_banner.dart';
-
 import 'auth_manager.dart';
 
 enum AuthMode { signup, login }

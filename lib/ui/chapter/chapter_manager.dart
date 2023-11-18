@@ -18,12 +18,9 @@ class ChaptersManager with ChangeNotifier {
 
   fetchChapters(String novelId) async {
     items = (await _ChaptersService.fetchChapters(novelId));
-    // print(items.chapterCount);
-    // return _items;
   }
 
   int get itemCount {
     return items.chapterCount;
   }
-
 }

@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/foundation.dart';
-
 import '../../models/auth_token.dart';
 import '../../services/auth_service.dart';
 
@@ -15,7 +13,8 @@ class AuthManager with ChangeNotifier {
   bool get isAuth {
     return authToken != null && authToken!.isValid;
   }
-  String? get getmail{
+
+  String? get getmail {
     return _email;
   }
 
@@ -31,7 +30,6 @@ class AuthManager with ChangeNotifier {
 
   Future<void> signup(String email, String password) async {
     _setAuthToken(await _authService.signup(email, password));
-    
   }
 
   Future<void> login(String email, String password) async {

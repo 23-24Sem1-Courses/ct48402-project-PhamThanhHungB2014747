@@ -96,9 +96,6 @@ class Profile extends StatelessWidget {
                   builder: (context) => const MyApp(),
                 ),
               );
-              // ..pop()
-              // ..pushReplacementNamed('/');
-
               context.read<AuthManager>().logout();
             },
           ),

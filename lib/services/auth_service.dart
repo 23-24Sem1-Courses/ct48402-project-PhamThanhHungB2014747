@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'dart:async';
-import 'dart:developer' as dev;
+// import 'dart:developer' as dev;
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 import '../models/http_exception.dart';
 import '../models/auth_token.dart';
 
@@ -44,8 +43,8 @@ class AuthService {
       final authToken = _fromJson(responseJson);
       _saveAuthToken(authToken);
       _saveEmail(email); // Lưu email
-      dev.log(authToken.userId);
-      dev.log(authToken.token!);
+      // dev.log(authToken.userId);
+      // dev.log(authToken.token!);
       return authToken;
     } catch (error) {
       print(error);

@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../../models/novel.dart';
 import './novel_manager.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/cupertino.dart';
 
 class DetailNovelScreen extends StatefulWidget {
   static const routeName = '/novel-detail';
@@ -216,7 +215,8 @@ class _Mydetail extends State<DetailNovelScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ChapterScreen(chapterNumber,id: novel.id ?? '')),
+                        builder: (context) =>
+                            ChapterScreen(chapterNumber, id: novel.id ?? '')),
                   );
                 },
                 style: ButtonStyle(
