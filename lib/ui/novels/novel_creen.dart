@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../models/novel.dart';
 import './detail_novel_screen.dart';
 import './novel_manager.dart';

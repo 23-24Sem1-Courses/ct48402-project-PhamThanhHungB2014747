@@ -176,8 +176,10 @@ class _AuthCardState extends State<AuthCard> {
           color: Theme.of(context).primaryColor,
         ),
       ),
-      child:
-          Text('${_authMode == AuthMode.login ? 'SIGNUP' : 'LOGIN'} INSTEAD'),
+      child: Text(
+        '${_authMode == AuthMode.login ? 'SIGNUP' : 'LOGIN'} INSTEAD',
+        style: const TextStyle(color: Colors.blue),
+      ),
     );
   }
 
@@ -189,13 +191,16 @@ class _AuthCardState extends State<AuthCard> {
           borderRadius: BorderRadius.circular(10),
         ),
         minimumSize: const Size(300, 40),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.blue,
         padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 8.0),
         textStyle: TextStyle(
           color: Theme.of(context).primaryTextTheme.titleLarge?.color,
         ),
       ),
-      child: Text(_authMode == AuthMode.login ? 'LOGIN' : 'SIGN UP'),
+      child: Text(
+        _authMode == AuthMode.login ? 'LOGIN' : 'SIGN UP',
+        style: const TextStyle(color: Colors.white),
+      ),
     );
   }
 

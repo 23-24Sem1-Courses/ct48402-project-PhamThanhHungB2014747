@@ -40,7 +40,7 @@ class UserNovelListTile extends StatelessWidget {
         );
       },
       icon: const Icon(Icons.edit),
-      color: Theme.of(context).primaryColor,
+      color: Colors.blue,
     );
   }
 

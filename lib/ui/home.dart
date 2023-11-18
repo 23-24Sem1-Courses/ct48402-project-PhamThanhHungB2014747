@@ -19,9 +19,12 @@ class _HomeScreen extends State<HomeScreen> {
     _tabs = [
       const ListNovel(),
       const ListLibaryNovel(),
-      Profile(email: widget.email ?? '',),
+      Profile(
+        email: widget.email ?? '',
+      ),
     ];
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,15 +44,15 @@ class _HomeScreen extends State<HomeScreen> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home, color: Colors.blue),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.my_library_books),
+            icon: Icon(Icons.my_library_books, color: Colors.blue),
             label: 'Libary',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.person, color: Colors.blue),
             label: 'Profile',
           ),
         ],

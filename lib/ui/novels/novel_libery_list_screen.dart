@@ -1,6 +1,5 @@
 import 'package:ct484_project/ui/novels/novel_grid.dart';
 import 'package:provider/provider.dart';
-// import './novel_creen.dart';
 import 'package:flutter/material.dart';
 import './novel_manager.dart';
 import '../../models/novel.dart';
@@ -24,9 +23,10 @@ class _ListLibaryNovel extends State<ListLibaryNovel> {
     super.initState();
     _fetchNovels = context.read<NovelsManager>().fetchNovels();
   }
+
   Future<void> _refreshNovels() async {
     setState(() {
-     _showInLibrary.value = true;
+      _showInLibrary.value = true;
     });
   }
 
@@ -49,33 +49,12 @@ class _ListLibaryNovel extends State<ListLibaryNovel> {
             overflow: TextOverflow.ellipsis,
           ),
         ),
-        // actions: <Widget>[
-        //   buildNovelFilterMenu(),
-        // ]
       ),
       body: RefreshIndicator(
-        onRefresh:_refreshNovels,
+        onRefresh: _refreshNovels,
         child: FutureBuilder(
           future: _fetchNovels,
           builder: (ctx, snapshot) {
-            // if (snapshot.connectionState == ConnectionState.waiting) {
-            //   return const Center(
-            //     child: CircularProgressIndicator(),
-            //   );
-            // }
-            // //   return ValueListenableBuilder<bool>(
-            // //     valueListenable: _showInLibrary,
-            // //     builder: (context, inLibrary, child) {
-            // //       return NovelGrid(inLibrary);
-            // //     },
-            // //   );
-            // // }
-            // if (snapshot.connectionState == ConnectionState.done) {
-            //   return NovelGrid(_showInLibrary.value);
-            // }
-            // return const Center(
-            //   child: CircularProgressIndicator(),
-            // );
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: CircularProgressIndicator(),
@@ -90,30 +69,6 @@ class _ListLibaryNovel extends State<ListLibaryNovel> {
           },
         ),
       ),
-    );
-  }
-
-  Widget buildNovelFilterMenu() {
-    return PopupMenuButton(
-      onSelected: (FilterOptions selectedValue) {
-        setState(() {
-          if (selectedValue == FilterOptions.library) {
-            _showInLibrary.value = true;
-          } else {
-            _showInLibrary.value = false;
-          }
-        });
-      },
-      icon: const Icon(
-        color: Colors.black,
-        Icons.more_vert,
-      ),
-      itemBuilder: (ctx) => [
-        const PopupMenuItem(
-          value: FilterOptions.library,
-          child: Text('In Library'),
-        ),
-      ],
     );
   }
 }

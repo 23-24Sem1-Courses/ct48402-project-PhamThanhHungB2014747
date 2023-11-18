@@ -27,8 +27,12 @@ class _Mydetail extends State<DetailNovelScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Color(0xFFF5F5F5),
+          ),
           onPressed: () {
             Navigator.pop(context);
           },

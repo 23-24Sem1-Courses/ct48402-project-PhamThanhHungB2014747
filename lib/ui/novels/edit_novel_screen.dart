@@ -70,11 +70,16 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Edit Novel')),
+        backgroundColor: Colors.blue,
+        title: const Center(
+            child: Text(
+          'Edit Novel',
+          style: TextStyle(color: Color(0xFFF5F5F5)),
+        )),
         actions: <Widget>[
           IconButton(
             onPressed: _saveForm,
-            icon: const Icon(Icons.save),
+            icon: const Icon(Icons.save, color: Color(0xFFF5F5F5)),
           )
         ],
       ),

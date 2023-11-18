@@ -11,13 +11,21 @@ class UserNovelsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Color(0xFFF5F5F5),
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: const Center(child: Text('Your Novels')),
+        title: const Center(
+            child: Text(
+          'Your Novels',
+          style: TextStyle(color: Color(0xFFF5F5F5)),
+        )),
         actions: <Widget>[
           buildAddButton(context),
         ],
@@ -64,7 +72,10 @@ class UserNovelsScreen extends StatelessWidget {
           EditNovelScreen.routeName,
         );
       },
-      icon: const Icon(Icons.add),
+      icon: const Icon(
+        Icons.add,
+        color: Color(0xFFF5F5F5),
+      ),
     );
   }
 }
