@@ -16,7 +16,6 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    print(widget.email);
     _tabs = [
       const ListNovel(),
       const ListLibaryNovel(),

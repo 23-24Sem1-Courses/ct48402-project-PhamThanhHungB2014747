@@ -40,12 +40,14 @@ class AuthManager with ChangeNotifier {
   }
 
   Future<bool> tryAutoLogin() async {
+    final savedEmail = await _authService.loadSavedEmail();
     final savedToken = await _authService.loadSavedAuthToken();
     if (savedToken == null) {
       return false;
     }
 
     _setAuthToken(savedToken);
+    _email = savedEmail;
     return true;
   }
 

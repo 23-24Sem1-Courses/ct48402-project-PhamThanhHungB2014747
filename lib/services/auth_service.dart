@@ -10,6 +10,8 @@ import '../models/auth_token.dart';
 
 class AuthService {
   static const _authTokenKey = 'authToken';
+  static const _emailKey = 'email'; // Thêm khóa cho email
+
   late final String? _apiKey;
 
   AuthService() {
@@ -41,6 +43,7 @@ class AuthService {
 
       final authToken = _fromJson(responseJson);
       _saveAuthToken(authToken);
+      _saveEmail(email); // Lưu email
       dev.log(authToken.userId);
       dev.log(authToken.token!);
       return authToken;
@@ -61,6 +64,11 @@ class AuthService {
   Future<void> _saveAuthToken(AuthToken authToken) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(_authTokenKey, json.encode(authToken.toJson()));
+  }
+
+  Future<void> _saveEmail(String email) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(_emailKey, email);
   }
 
   AuthToken _fromJson(Map<String, dynamic> json) {
@@ -92,8 +100,18 @@ class AuthService {
     return authToken;
   }
 
+  Future<String?> loadSavedEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_emailKey);
+  }
+
   Future<void> clearSavedAuthToken() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.remove(_authTokenKey);
+  }
+
+  Future<void> clearSavedEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove(_emailKey);
   }
 }
