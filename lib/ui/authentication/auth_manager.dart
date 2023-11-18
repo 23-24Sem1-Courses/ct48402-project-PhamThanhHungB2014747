@@ -7,12 +7,16 @@ import '../../services/auth_service.dart';
 
 class AuthManager with ChangeNotifier {
   AuthToken? _authToken;
+  String? _email;
   Timer? _authTimer;
 
   final AuthService _authService = AuthService();
 
   bool get isAuth {
     return authToken != null && authToken!.isValid;
+  }
+  String? get getmail{
+    return _email;
   }
 
   AuthToken? get authToken {
@@ -32,6 +36,7 @@ class AuthManager with ChangeNotifier {
 
   Future<void> login(String email, String password) async {
     _setAuthToken(await _authService.login(email, password));
+    _email = email;
   }
 
   Future<bool> tryAutoLogin() async {

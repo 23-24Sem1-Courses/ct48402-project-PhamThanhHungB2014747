@@ -17,6 +17,8 @@ class _ChapterScreenState extends State<ChapterScreen> {
 
   bool _shouldReload = false;
   int currentChapter = 0;
+   final _scrollController = ScrollController();
+
 
   @override
   void initState() {
@@ -37,16 +39,26 @@ class _ChapterScreenState extends State<ChapterScreen> {
   void _incrementChapter() {
     setState(() {
       if (_chaptersManager.items.chapterCount > currentChapter + 1)
-        currentChapter++; // Tăng giá trị widget.idChapter lên 1
+        currentChapter++;
+        _scrollToTop();// Tăng giá trị widget.idChapter lên 1
     });
   }
 
   void _decrementChapter() {
     setState(() {
       if (currentChapter > 1) {
-        currentChapter--; // Giảm giá trị widget.idChapter đi 1
+        currentChapter--; 
+        _scrollToTop();// Giảm giá trị widget.idChapter đi 1
       }
     });
+  }
+
+  void _scrollToTop() {
+    _scrollController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
   }
 
   @override
@@ -81,6 +93,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
         ],
       ),
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
           child: Text(

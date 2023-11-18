@@ -15,7 +15,7 @@ class ListLibaryNovel extends StatefulWidget {
 }
 
 class _ListLibaryNovel extends State<ListLibaryNovel> {
-  final _showInLibrary = ValueNotifier<bool>(false);
+  final _showInLibrary = ValueNotifier<bool>(true);
   late final Novel novel;
   late Future<void> _fetchNovels;
 
@@ -24,44 +24,71 @@ class _ListLibaryNovel extends State<ListLibaryNovel> {
     super.initState();
     _fetchNovels = context.read<NovelsManager>().fetchNovels();
   }
+  Future<void> _refreshNovels() async {
+    setState(() {
+     _showInLibrary.value = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          elevation: 0,
-          toolbarHeight: 60,
-          backgroundColor: Colors.white,
-          title: const Center(
-            child: Text(
-              'Libary',
-              style: TextStyle(
-                color: Color(0xFF393939),
-                fontSize: 35,
-                fontFamily: 'Recoleta',
-              ),
-              maxLines: 4,
-              overflow: TextOverflow.ellipsis,
+        elevation: 0,
+        toolbarHeight: 60,
+        backgroundColor: Colors.white,
+        title: const Center(
+          child: Text(
+            'Libary',
+            style: TextStyle(
+              color: Color(0xFF393939),
+              fontSize: 35,
+              fontFamily: 'Recoleta',
             ),
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
           ),
-          actions: <Widget>[
-            buildNovelFilterMenu(),
-          ]),
-      body: FutureBuilder(
-        future: _fetchNovels,
-        builder: (ctx, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return ValueListenableBuilder<bool>(
-              valueListenable: _showInLibrary,
-              builder: (context, inLibrary, child) {
-                return NovelGrid(inLibrary);
-              },
-            );
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
+        ),
+        // actions: <Widget>[
+        //   buildNovelFilterMenu(),
+        // ]
+      ),
+      body: RefreshIndicator(
+        onRefresh:_refreshNovels,
+        child: FutureBuilder(
+          future: _fetchNovels,
+          builder: (ctx, snapshot) {
+            // if (snapshot.connectionState == ConnectionState.waiting) {
+            //   return const Center(
+            //     child: CircularProgressIndicator(),
+            //   );
+            // }
+            // //   return ValueListenableBuilder<bool>(
+            // //     valueListenable: _showInLibrary,
+            // //     builder: (context, inLibrary, child) {
+            // //       return NovelGrid(inLibrary);
+            // //     },
+            // //   );
+            // // }
+            // if (snapshot.connectionState == ConnectionState.done) {
+            //   return NovelGrid(_showInLibrary.value);
+            // }
+            // return const Center(
+            //   child: CircularProgressIndicator(),
+            // );
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.connectionState == ConnectionState.done) {
+              return NovelGrid(_showInLibrary.value);
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ),
       ),
     );
   }

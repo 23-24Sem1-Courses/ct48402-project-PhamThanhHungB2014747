@@ -5,7 +5,8 @@ import 'package:provider/provider.dart';
 import '../../../main.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({super.key});
+  const Profile({Key? key, required this.email}) : super(key: key);
+  final String email;
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +31,16 @@ class Profile extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Positioned(
+                Positioned(
                   bottom: 40.0,
                   child: Text(
-                    'admin',
-                    style: TextStyle(
+                    email,
+                    style: const TextStyle(
                         fontSize: 20.0,
                         color: Colors.black,
                         fontFamily: 'Recoleta',
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.none),
                   ),
                 ),
               ],

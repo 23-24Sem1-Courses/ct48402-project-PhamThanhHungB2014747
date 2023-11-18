@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             home: authManager.isAuth
-                ? const HomeScreen()
+                ? HomeScreen(email: authManager.getmail ?? '')
                 : FutureBuilder(
                     future: authManager.tryAutoLogin(),
                     builder: (ctx, snapshot) {

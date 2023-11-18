@@ -327,7 +327,7 @@ class _EditNovelScreenState extends State<EditNovelScreen> {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
         Container(
-          width: 377,
+          width: 360,
           height: 100,
           margin: const EdgeInsets.only(
             top: 8,

@@ -34,33 +34,38 @@ class _ListNovel extends State<ListNovel> {
         elevation: 0,
         toolbarHeight: 50,
         backgroundColor: Colors.white,
-        title: const SizedBox(
-          height: 38,
-          // child: TextField(
-          //   focusNode: FocusNode(),
-          //   decoration: InputDecoration(
-          //       filled: true,
-          //       fillColor: const Color(0xFFDCDCDC),
-          //       contentPadding: const EdgeInsets.all(0),
-          //       prefixIcon: Icon(
-          //         Icons.search,
-          //         color: Colors.grey.shade500,
-          //       ),
-          //       border: OutlineInputBorder(
-          //           borderRadius: BorderRadius.circular(50),
-          //           borderSide: BorderSide.none),
-          //       hintStyle: TextStyle(fontSize: 14, color: Colors.grey.shade500),
-          //       hintText: "Search name"),
-          //
-          child: MySearchPage(),
+        title: Padding(
+          padding: const EdgeInsets.only(top: 30.0, bottom: 30),
+          child: SizedBox(
+            height: 35,
+            child: TextField(
+              focusNode: FocusNode(),
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: const Color(0xFFDCDCDC),
+                contentPadding: const EdgeInsets.all(0),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Colors.grey.shade500,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50),
+                  borderSide: BorderSide.none,
+                ),
+                hintStyle: TextStyle(fontSize: 14, color: Colors.grey.shade500),
+                hintText: "Search name",
+              ),
+            ),
+            // child: MySearchPage(),
+          ),
         ),
       ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: CarouselSlider(
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            CarouselSlider(
               options: CarouselOptions(
-                height: 200, // Chiều cao của thanh trượt
+                height: 150, // Chiều cao của thanh trượt
                 aspectRatio: 16 / 9,
                 autoPlay: true,
                 enlargeCenterPage: true,
@@ -80,17 +85,13 @@ class _ListNovel extends State<ListNovel> {
                 );
               }).toList(),
             ),
-          ),
-          Expanded(
-            child: FutureBuilder(
+            FutureBuilder(
               future: _fetchNovels,
               builder: (ctx, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const SingleChildScrollView(
-                    child: SizedBox(
-                      height: 800,
-                      child: Scaffold(),
-                    ),
+                  return const SizedBox(
+                    height: 800,
+                    child: Scaffold(),
                   );
                 }
                 return RefreshIndicator(
@@ -100,8 +101,8 @@ class _ListNovel extends State<ListNovel> {
                 );
               },
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -112,6 +113,7 @@ Widget buildNovelListView() {
     builder: (ctx, novelsManager, child) {
       return ListView.builder(
         shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: novelsManager.itemCount,
         itemBuilder: (BuildContext context, int index) {
           return NovelScreen(novelsManager.items[index]);

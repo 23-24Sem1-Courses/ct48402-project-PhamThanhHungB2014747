@@ -12,7 +12,7 @@ class NovelGrid extends StatelessWidget {
     final novels = context.select<NovelsManager, List<Novel>>((novelsManager) =>
         showLibrary ? novelsManager.libraryItems : novelsManager.items);
     return ListView.builder(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(0.0),
       itemCount: novels.length,
       itemBuilder: (ctx, i) => NovelScreen(novels[i]),
     );

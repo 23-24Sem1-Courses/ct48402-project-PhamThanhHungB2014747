@@ -3,20 +3,26 @@ import 'novels/novel_libery_list_screen.dart';
 import 'screens.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({required this.email, Key? key}) : super(key: key);
+  final String? email;
   @override
   State<HomeScreen> createState() => _HomeScreen();
 }
 
 class _HomeScreen extends State<HomeScreen> {
   int _currentIndex = 0;
+  late List<Widget> _tabs = [];
 
-  final List<Widget> _tabs = [
-    // ignore: prefer_const_constructors
-    const ListNovel(),
-    const ListLibaryNovel(),
-    const Profile(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    print(widget.email);
+    _tabs = [
+      const ListNovel(),
+      const ListLibaryNovel(),
+      Profile(email: widget.email ?? '',),
+    ];
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

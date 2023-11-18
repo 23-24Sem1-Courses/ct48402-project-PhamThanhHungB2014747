@@ -22,7 +22,7 @@ class UserNovelsScreen extends StatelessWidget {
           buildAddButton(context),
         ],
       ),
-      drawer: const HomeScreen(),
+      // drawer: const HomeScreen(),
       body: FutureBuilder(
           future: context.read<NovelsManager>().fetchNovels(),
           builder: (ctx, snapshot) {
