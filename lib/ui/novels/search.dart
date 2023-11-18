@@ -1,57 +1,58 @@
 import 'package:flutter/material.dart';
-import '../../models/novel.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-class NovelSearchPage extends StatefulWidget {
+class MySearchPage extends StatefulWidget {
+  const MySearchPage({super.key});
+
   @override
-  _NovelSearchPageState createState() => _NovelSearchPageState();
+  State<MySearchPage> createState() => _MySearchPageState();
 }
 
-class _NovelSearchPageState extends State<NovelSearchPage> {
-  String _searchText = '';
-  List<Novel> _searchResults = [];
-
-  void _performSearch(String searchText) {
-    setState(() {
-      _searchText = searchText;
-      _searchResults = novels
-          .where((novel) =>
-              novel.name.toLowerCase().contains(searchText.toLowerCase()))
-          .toList();
-    });
-  }
+class _MySearchPageState extends State<MySearchPage> {
+  final TextEditingController _typeAheadController = TextEditingController();
+  String _selectedNovel = '';
+  final List<String> _novels = [
+    "Forrest Gump",
+    'Peter Pan',
+    'Jaws',
+    // Thêm các sản phẩm khác vào đây
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          TextField(
-            onChanged: _performSearch,
-            decoration: const InputDecoration(
-              hintText: 'Search...',
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(),
+          TypeAheadField(
+            textFieldConfiguration: TextFieldConfiguration(
+              controller: _typeAheadController,
+              decoration: const InputDecoration(
+                hintText: 'Search...',
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(),
+              ),
             ),
+            suggestionsCallback: (pattern) async {
+              return _novels
+                  .where((novel) =>
+                      novel.toLowerCase().contains(pattern.toLowerCase()))
+                  .toList();
+            },
+            itemBuilder: (context, suggestion) {
+              return ListTile(
+                title: Text(suggestion),
+              );
+            },
+            onSuggestionSelected: (suggestion) {
+              setState(() {
+                _typeAheadController.text = suggestion;
+                _selectedNovel = suggestion;
+              });
+            },
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _searchResults.length,
-              itemBuilder: (context, index) {
-                final product = _searchResults[index];
-                return ListTile(
-                  title: Text(product.name),
-                );
-              },
-            ),
-          ),
+          Text('Selected Novel: $_selectedNovel'),
         ],
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: ProductSearchPage(),
-  ));
 }

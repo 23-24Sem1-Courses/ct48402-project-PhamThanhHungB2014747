@@ -17,7 +17,7 @@ class UserNovelsScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Text('Your Novels'),
+        title: const Center(child: Text('Your Novels')),
         actions: <Widget>[
           buildAddButton(context),
         ],

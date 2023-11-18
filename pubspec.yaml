@@ -24,6 +24,7 @@ dependencies:
   shared_preferences: ^2.0.15
   loading_animation_widget: ^1.2.0+4
   carousel_slider: ^4.0.0
+  flutter_typeahead: any
   # flutter_animated_button: ^2.0.3
 
 dev_dependencies:

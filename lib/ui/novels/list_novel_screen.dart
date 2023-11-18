@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import './novel_manager.dart';
 import '../screens.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'search.dart';
 
 class ListNovel extends StatefulWidget {
   const ListNovel({super.key});
@@ -33,24 +34,25 @@ class _ListNovel extends State<ListNovel> {
         elevation: 0,
         toolbarHeight: 50,
         backgroundColor: Colors.white,
-        title: SizedBox(
+        title: const SizedBox(
           height: 38,
-          child: TextField(
-            focusNode: FocusNode(),
-            decoration: InputDecoration(
-                filled: true,
-                fillColor: const Color(0xFFDCDCDC),
-                contentPadding: const EdgeInsets.all(0),
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: Colors.grey.shade500,
-                ),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    borderSide: BorderSide.none),
-                hintStyle: TextStyle(fontSize: 14, color: Colors.grey.shade500),
-                hintText: "Search name"),
-          ),
+          // child: TextField(
+          //   focusNode: FocusNode(),
+          //   decoration: InputDecoration(
+          //       filled: true,
+          //       fillColor: const Color(0xFFDCDCDC),
+          //       contentPadding: const EdgeInsets.all(0),
+          //       prefixIcon: Icon(
+          //         Icons.search,
+          //         color: Colors.grey.shade500,
+          //       ),
+          //       border: OutlineInputBorder(
+          //           borderRadius: BorderRadius.circular(50),
+          //           borderSide: BorderSide.none),
+          //       hintStyle: TextStyle(fontSize: 14, color: Colors.grey.shade500),
+          //       hintText: "Search name"),
+          //
+          child: MySearchPage(),
         ),
       ),
       body: Column(
