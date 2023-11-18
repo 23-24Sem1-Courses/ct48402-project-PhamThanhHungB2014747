@@ -69,7 +69,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color: Color(0xFFF5F5F5)),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -85,11 +85,11 @@ class _ChapterScreenState extends State<ChapterScreen> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.arrow_left),
+            icon: const Icon(Icons.arrow_left, color: Color(0xFFF5F5F5)),
             onPressed: _decrementChapter,
           ),
           IconButton(
-            icon: const Icon(Icons.arrow_right),
+            icon: const Icon(Icons.arrow_right, color: Color(0xFFF5F5F5)),
             onPressed: _incrementChapter,
           ),
         ],
